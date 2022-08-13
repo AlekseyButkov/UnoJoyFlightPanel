@@ -187,66 +187,6 @@ static const uint8_t PROGMEM gamepad_hid_report_desc[] = {
 	0x95, 0x08,        //   REPORT_COUNT (8)
 	0xb1, 0x02,        //   FEATURE (Data,Var,Abs)
 	0xc0,              // END_COLLECTION
-	
-	//MegaJoy descriptor 2
-	0x05, 0x01,        // USAGE_PAGE (Generic Desktop)
-	0x09, 0x05,        // USAGE (Gamepad)
-	0xa1, 0x01,        // COLLECTION (Application)
-	0x85, GAMEPAD_1_REPORT_ID,   //  REPORT ID (Gamepad 0)
-	0x15, 0x00,        //   LOGICAL_MINIMUM (0)
-	0x25, 0x01,        //   LOGICAL_MAXIMUM (1)
-	0x35, 0x00,        //   PHYSICAL_MINIMUM (0)
-	0x45, 0x01,        //   PHYSICAL_MAXIMUM (1)
-	0x75, 0x01,        //   REPORT_SIZE (1)
-	0x95, 8 * BUTTON_ARRAY_LENGTH,        //   REPORT_COUNT (144)
-	0x05, 0x09,        //   USAGE_PAGE (Button)
-	0x19, 0x01,        //   USAGE_MINIMUM (Button 1)
-	0x29, 8 * BUTTON_ARRAY_LENGTH,        //   USAGE_MAXIMUM (Button 144)
-	0x81, 0x02,        //   INPUT (Data,Var,Abs)
-	0x05, 0x01,        //   USAGE_PAGE (Generic Desktop)
-	0x25, 0x07,        //   LOGICAL_MAXIMUM (7)
-	0x46, 0x3b, 0x01,  //   PHYSICAL_MAXIMUM (315)
-	0x75, 0x04,        //   REPORT_SIZE (4)
-	0x95, 0x01,        //   REPORT_COUNT (1)
-	0x65, 0x14,        //   UNIT (Eng Rot:Angular Pos)
-	0x09, 0x39,        //   USAGE (Hat switch)
-	0x81, 0x42,        //   INPUT (Data,Var,Abs,Null)
-	0x65, 0x00,        //   UNIT (None)
-	0x95, 0x01,        //   REPORT_COUNT (1)
-	0x81, 0x01,        //   INPUT (Cnst,Ary,Abs)
-	0x16, 0x00, 0x00,  //   LOGICAL_MINIMUM 0
-	0x26, 0xff, 0x03,  //   LOGICAL_MAXIMUM (1024)
-	0x36, 0x00, 0x00,  //   PHYSICAL_MINIMUM (0)
-	0x46, 0xff, 0x03,  //   PHYSICAL_MAXIMUM (1024)
-	0x09, 0x30,        //   USAGE (X)
-	0x09, 0x31,        //   USAGE (Y)
-	0x09, 0x32,        //   USAGE (Z)
-	0x09, 0x33,		   //   USAGE (Rx)
-	0x09, 0x34,		   //   USAGE (Ry)
-	0x09, 0x35,        //   USAGE (Rz)
-	0x75, 0x10,        //   REPORT_SIZE (16)
-	0x95, 0x06,        //   REPORT_COUNT (6)
-	0x81, 0x02,        //   INPUT (Data,Var,Abs)
-	0x06, 0x00, 0xff,  //   USAGE_PAGE (Vendor Specific)
-	0x09, 0x20,        //   Unknown
-	0x09, 0x21,        //   Unknown
-	0x09, 0x22,        //   Unknown
-	0x09, 0x23,        //   Unknown
-	0x09, 0x24,        //   Unknown
-	0x09, 0x25,        //   Unknown
-	0x09, 0x26,        //   Unknown
-	0x09, 0x27,        //   Unknown
-	0x09, 0x28,        //   Unknown
-	0x09, 0x29,        //   Unknown
-	0x09, 0x2a,        //   Unknown
-	0x09, 0x2b,        //   Unknown
-	0x75, 0x08,        //   REPORT_SIZE (8) NEW
-	0x95, 0x0c,        //   REPORT_COUNT (12)
-	0x81, 0x02,        //   INPUT (Data,Var,Abs)
-	0x0a, 0x21, 0x26,  //   Unknown
-	0x95, 0x08,        //   REPORT_COUNT (8)
-	0xb1, 0x02,        //   FEATURE (Data,Var,Abs)
-	0xc0,              // END_COLLECTION
 
 };
 

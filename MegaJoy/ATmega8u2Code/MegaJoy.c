@@ -173,7 +173,6 @@ int main(void) {
 	//  so the serial data you'll be properly aligned.
 	_delay_ms(500);
 	dataForMegaController_t controllerData1;
-	dataForMegaController_t controllerData2;
 
 	while (1) {
 		// Delay so we're not going too fast
@@ -189,17 +188,11 @@ int main(void) {
 		flushSerialRead();
 		
 		int serialIndex = 0;
-		// The buttons are held in an array, so we need to break it between the two controllers
+		// The buttons are held in an array
 		for (int i = 0; i < BUTTON_ARRAY_LENGTH; i++){
 			serialWrite(serialIndex);
 			serialIndex++;
 			controllerData1.buttonArray[i] = serialRead(25);	
-		}
-		
-		for (int i = 0; i < BUTTON_ARRAY_LENGTH; i++){
-			serialWrite(serialIndex);
-			serialIndex++;
-			controllerData2.buttonArray[i] = serialRead(25);
 		}
 		
 		serialWrite(serialIndex);
@@ -209,11 +202,6 @@ int main(void) {
 		controllerData1.dpadUpOn = 1 & (directionButtons >> 1);
 		controllerData1.dpadRightOn = 1 & (directionButtons >> 2);
 		controllerData1.dpadDownOn = 1 & (directionButtons >> 3);
-		
-		controllerData2.dpadLeftOn = 1 & (directionButtons >> 4);
-		controllerData2.dpadUpOn = 1 & (directionButtons >> 5);
-		controllerData2.dpadRightOn = 1 & (directionButtons >> 6);
-		controllerData2.dpadDownOn = 1 & (directionButtons >> 7);
 		
 		// Assuming that 16 bit data gets sent high byte first
 		controllerData1.leftStickX = get16bitValue(serialIndex);
@@ -229,23 +217,9 @@ int main(void) {
 		controllerData1.stick3Y = get16bitValue(serialIndex);
 		serialIndex += 2;
 		
-		controllerData2.leftStickX = get16bitValue(serialIndex);
-		serialIndex += 2;
-		controllerData2.leftStickY = get16bitValue(serialIndex);
-		serialIndex += 2;
-		controllerData2.rightStickX = get16bitValue(serialIndex);
-		serialIndex += 2;
-		controllerData2.rightStickY = get16bitValue(serialIndex);
-		serialIndex += 2;
-		controllerData2.stick3X = get16bitValue(serialIndex);
-		serialIndex += 2;
-		controllerData2.stick3Y = get16bitValue(serialIndex);
-		
 		// Communication with the Arduino chip is over here
 		LEDoff(TXLED);	
         // Finally, we send the data out via the USB port
 		sendControllerDataViaUSB(controllerData1, 1);	
-		_delay_ms(10);
-		sendControllerDataViaUSB(controllerData2, 2);
 	}
 }
