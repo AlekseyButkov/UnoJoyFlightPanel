@@ -174,6 +174,8 @@ int main(void) {
 	_delay_ms(500);
 	dataForMegaController_t controllerData1;
 
+	int16_t one = 0;
+	
 	while (1) {
 		// Delay so we're not going too fast
 		_delay_ms(10);
@@ -204,18 +206,26 @@ int main(void) {
 		controllerData1.dpadDownOn = 1 & (directionButtons >> 3);
 		
 		// Assuming that 16 bit data gets sent high byte first
-		controllerData1.leftStickX = get16bitValue(serialIndex);
+		controllerData1.leftStickX = one;// get16bitValue(serialIndex);
 		serialIndex += 2;
-		controllerData1.leftStickY = get16bitValue(serialIndex);
+		controllerData1.leftStickY = one;//get16bitValue(serialIndex);
 		serialIndex += 2;
-		controllerData1.rightStickX = get16bitValue(serialIndex);
+		controllerData1.rightStickX = one;//get16bitValue(serialIndex);
 		serialIndex += 2;
-		controllerData1.rightStickY = get16bitValue(serialIndex);
+		controllerData1.rightStickY = one;//get16bitValue(serialIndex);
 		serialIndex += 2;
-		controllerData1.stick3X = get16bitValue(serialIndex);
+		controllerData1.stick3X = one;//get16bitValue(serialIndex);
 		serialIndex += 2;
-		controllerData1.stick3Y = get16bitValue(serialIndex);
+		controllerData1.stick3Y = one;//get16bitValue(serialIndex);
 		serialIndex += 2;
+		controllerData1.slider = one;//get16bitValue(serialIndex);
+		serialIndex += 2;
+		controllerData1.dial = one;//get16bitValue(serialIndex);
+		serialIndex += 2;
+		controllerData1.wheel = one;//get16bitValue(serialIndex);
+		serialIndex += 2;
+		
+		one = (one + 1) % 1024;
 		
 		// Communication with the Arduino chip is over here
 		LEDoff(TXLED);	

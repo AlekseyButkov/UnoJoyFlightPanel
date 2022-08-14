@@ -112,7 +112,7 @@ static const uint8_t PROGMEM endpoint_config_table[] = {
 
 
 static const uint8_t PROGMEM device_descriptor[] = {
-	18,					// bLength
+	24,					// bLength
 	1,					// bDescriptorType
 	0x10, 0x01,				// bcdUSB
 	0,					// bDeviceClass
@@ -164,8 +164,11 @@ static const uint8_t PROGMEM gamepad_hid_report_desc[] = {
 	0x09, 0x33,		   //   USAGE (Rx)
 	0x09, 0x34,		   //   USAGE (Ry)
 	0x09, 0x35,        //   USAGE (Rz)
+	0x09, 0x36,        //   USAGE (Slider)
+	0x09, 0x37,        //   USAGE (Dial)
+	0x09, 0x38,        //   USAGE (Wheel)
 	0x75, 0x10,        //   REPORT_SIZE (16)
-	0x95, 0x06,        //   REPORT_COUNT (6)
+	0x95, 0x09,        //   REPORT_COUNT (9)
 	0x81, 0x02,        //   INPUT (Data,Var,Abs)
 	0x06, 0x00, 0xff,  //   USAGE_PAGE (Vendor Specific)
 	0x09, 0x20,        //   Unknown
@@ -519,6 +522,13 @@ int8_t sendControllerDataViaUSB(dataForMegaController_t btnList, uint8_t playerI
 		btnList.stick3Y = stickMin;
 	if (btnList.stick3Y > stickMax)
 		btnList.stick3Y = stickMax;
+		
+	if (btnList.slider > stickMax)
+		btnList.slider = stickMax;
+	if (btnList.dial > stickMax)
+		btnList.dial = stickMax;
+	if (btnList.wheel > stickMax)
+		btnList.wheel = stickMax;
 
 	
 	usbControllerState.l_x_axis = btnList.leftStickX;
@@ -527,6 +537,9 @@ int8_t sendControllerDataViaUSB(dataForMegaController_t btnList, uint8_t playerI
 	usbControllerState.r_y_axis = btnList.rightStickY;
 	usbControllerState.x_3_axis = btnList.stick3X;
 	usbControllerState.y_3_axis = btnList.stick3Y;
+	usbControllerState.slider_axis = btnList.slider;
+	usbControllerState.dial_axis = btnList.dial;
+	usbControllerState.wheel_axis = btnList.wheel;
 	
 	// Send the data out via USB
 	return usb_gamepad_send();

@@ -49,6 +49,9 @@
 		int16_t rightStickY;
 		int16_t stick3X;
 		int16_t stick3Y;
+		int16_t slider;
+		int16_t dial;
+		int16_t wheel;
 	} dataForMegaController_t;
 
 
