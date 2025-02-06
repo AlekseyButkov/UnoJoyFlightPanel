@@ -31,6 +31,7 @@ Getting Started
 	SnowLeopardUnoJoyDrivers.pkg
 
 	On Windows, you'll also need to download and install Atmel's FLIP tool:
+	NOTE: Flip requires JDK 5 and will not run with newer versions.
 	https://www.microchip.com/developmenttools/ProductDetails/flip
 
 	On Linux you'll need to install dfu-programmer. you can get it by typing to your terminal:
