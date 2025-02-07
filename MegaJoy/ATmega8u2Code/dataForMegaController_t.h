@@ -52,6 +52,13 @@
 		int16_t slider;
 		int16_t dial;
 		int16_t wheel;
+		int16_t auxAxis10;
+		int16_t auxAxis11;
+		int16_t auxAxis12;
+		int16_t auxAxis13;
+		int16_t auxAxis14;
+		int16_t auxAxis15;
+		int16_t auxAxis16;
 	} dataForMegaController_t;
 
 

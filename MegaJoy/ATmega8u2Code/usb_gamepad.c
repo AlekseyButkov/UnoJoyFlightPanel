@@ -112,7 +112,7 @@ static const uint8_t PROGMEM endpoint_config_table[] = {
 
 
 static const uint8_t PROGMEM device_descriptor[] = {
-	24,					// bLength
+	38,					// bLength
 	1,					// bDescriptorType
 	0x10, 0x01,				// bcdUSB
 	0,					// bDeviceClass
@@ -167,8 +167,15 @@ static const uint8_t PROGMEM gamepad_hid_report_desc[] = {
 	0x09, 0x36,        //   USAGE (Slider)
 	0x09, 0x37,        //   USAGE (Dial)
 	0x09, 0x38,        //   USAGE (Wheel)
+	0x09, 0x40,		   //   Usage (Axis 10)
+	0x09, 0x41,		   //   Usage (Axis 11)
+	0x09, 0x42,		   //   Usage (Axis 12)
+	0x09, 0x43,		   //   Usage (Axis 13)
+	0x09, 0x44,		   //   Usage (Axis 14)
+	0x09, 0x45,		   //   Usage (Axis 15)
+	0x09, 0x46,		   //   Usage (Axis 16)
 	0x75, 0x10,        //   REPORT_SIZE (16)
-	0x95, 0x09,        //   REPORT_COUNT (9)
+	0x95, 0x10,        //   REPORT_COUNT (16)
 	0x81, 0x02,        //   INPUT (Data,Var,Abs)
 	0x06, 0x00, 0xff,  //   USAGE_PAGE (Vendor Specific)
 	0x09, 0x20,        //   Unknown
@@ -496,6 +503,7 @@ int8_t sendControllerDataViaUSB(dataForMegaController_t btnList, uint8_t playerI
 	// Sanity check the inputs so we don't try and go out of bounds
 	int16_t stickMin = 0;
 	int16_t stickMax = 1023;
+	
 	if (btnList.leftStickX < stickMin)
 		btnList.leftStickX = stickMin;
 	if (btnList.leftStickX > stickMax)
@@ -529,7 +537,41 @@ int8_t sendControllerDataViaUSB(dataForMegaController_t btnList, uint8_t playerI
 		btnList.dial = stickMax;
 	if (btnList.wheel > stickMax)
 		btnList.wheel = stickMax;
+	
+	if (btnList.auxAxis10 < stickMin)
+		btnList.auxAxis10 = stickMin;
+	if (btnList.auxAxis10 > stickMax)
+		btnList.auxAxis10 = stickMax;
 
+	if (btnList.auxAxis11 < stickMin)
+		btnList.auxAxis11 = stickMin;
+	if (btnList.auxAxis11 > stickMax)
+		btnList.auxAxis11 = stickMax;
+
+	if (btnList.auxAxis12 < stickMin)
+		btnList.auxAxis12 = stickMin;
+	if (btnList.auxAxis12 > stickMax)
+		btnList.auxAxis12 = stickMax;
+
+	if (btnList.auxAxis13 < stickMin)
+		btnList.auxAxis13 = stickMin;
+	if (btnList.auxAxis13 > stickMax)
+		btnList.auxAxis13 = stickMax;
+
+	if (btnList.auxAxis14 < stickMin)
+		btnList.auxAxis14 = stickMin;
+	if (btnList.auxAxis14 > stickMax)
+		btnList.auxAxis14 = stickMax;
+
+	if (btnList.auxAxis15 < stickMin)
+		btnList.auxAxis15 = stickMin;
+	if (btnList.auxAxis15 > stickMax)
+		btnList.auxAxis15 = stickMax;
+
+	if (btnList.auxAxis16 < stickMin)
+		btnList.auxAxis16 = stickMin;
+	if (btnList.auxAxis16 > stickMax)
+		btnList.auxAxis16 = stickMax;	
 	
 	usbControllerState.l_x_axis = btnList.leftStickX;
 	usbControllerState.l_y_axis = btnList.leftStickY;
@@ -540,6 +582,13 @@ int8_t sendControllerDataViaUSB(dataForMegaController_t btnList, uint8_t playerI
 	usbControllerState.slider_axis = btnList.slider;
 	usbControllerState.dial_axis = btnList.dial;
 	usbControllerState.wheel_axis = btnList.wheel;
+	usbControllerState.aux_axis10 = btnList.auxAxis10;
+	usbControllerState.aux_axis11 = btnList.auxAxis11;
+	usbControllerState.aux_axis12 = btnList.auxAxis12;
+	usbControllerState.aux_axis13 = btnList.auxAxis13;
+	usbControllerState.aux_axis14 = btnList.auxAxis14;
+	usbControllerState.aux_axis15 = btnList.auxAxis15;
+	usbControllerState.aux_axis16 = btnList.auxAxis16;
 	
 	// Send the data out via USB
 	return usb_gamepad_send();

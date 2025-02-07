@@ -54,6 +54,13 @@ typedef struct {
 	int16_t slider_axis;
 	int16_t dial_axis;
 	int16_t wheel_axis;
+	int16_t aux_axis10;
+	int16_t aux_axis11;
+	int16_t aux_axis12;
+	int16_t aux_axis13;
+	int16_t aux_axis14;
+	int16_t aux_axis15;
+	int16_t aux_axis16;
 
 	// Gonna assume these are button analog values for the d-pad.
 	// NOTE: NOT EVEN SURE THIS IS RIGHT, OR IN THE CORRECT ORDER

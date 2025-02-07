@@ -230,8 +230,22 @@ int main(void) {
 		serialIndex += 2;
 		controllerData1.wheel = get16bitValue(serialIndex);
 		serialIndex += 2;
+		controllerData1.auxAxis10 = get16bitValue(serialIndex);
+		serialIndex += 2;
+		controllerData1.auxAxis11 = get16bitValue(serialIndex);
+		serialIndex += 2;
+		controllerData1.auxAxis12 = get16bitValue(serialIndex);
+		serialIndex += 2;
+		controllerData1.auxAxis13 = get16bitValue(serialIndex);
+		serialIndex += 2;
+		controllerData1.auxAxis14 = get16bitValue(serialIndex);
+		serialIndex += 2;
+		controllerData1.auxAxis15 = get16bitValue(serialIndex);
+		serialIndex += 2;
+		controllerData1.auxAxis16 = get16bitValue(serialIndex);
+		serialIndex += 2;
 		
-		one = (one + 1) % 1024;
+		one = (one + 5) % 1024;
 		
 		// Communication with the Arduino chip is over here
 		LEDoff(TXLED);	
