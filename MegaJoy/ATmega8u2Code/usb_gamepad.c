@@ -164,8 +164,10 @@ static const uint8_t PROGMEM gamepad_hid_report_desc[] = {
 	0x09, 0x33,		   //   USAGE (Rx)
 	0x09, 0x34,		   //   USAGE (Ry)
 	0x09, 0x35,        //   USAGE (Rz)
+	0x09, 0x36,        //   USAGE (Slider)
+	0x09, 0x37,        //   USAGE (Dial)
 	0x75, 0x10,        //   REPORT_SIZE (16)
-	0x95, 0x06,        //   REPORT_COUNT (6)
+	0x95, 0x08,        //   REPORT_COUNT (8)
 	0x81, 0x02,        //   INPUT (Data,Var,Abs)
 	0x06, 0x00, 0xff,  //   USAGE_PAGE (Vendor Specific)
 	0x09, 0x20,        //   Unknown
@@ -224,8 +226,10 @@ static const uint8_t PROGMEM gamepad_hid_report_desc[] = {
 	0x09, 0x33,		   //   USAGE (Rx)
 	0x09, 0x34,		   //   USAGE (Ry)
 	0x09, 0x35,        //   USAGE (Rz)
+	0x09, 0x36,        //   USAGE (Slider)
+	0x09, 0x37,        //   USAGE (Dial)
 	0x75, 0x10,        //   REPORT_SIZE (16)
-	0x95, 0x06,        //   REPORT_COUNT (6)
+	0x95, 0x08,        //   REPORT_COUNT (8)
 	0x81, 0x02,        //   INPUT (Data,Var,Abs)
 	0x06, 0x00, 0xff,  //   USAGE_PAGE (Vendor Specific)
 	0x09, 0x20,        //   Unknown
@@ -352,7 +356,7 @@ static const gamepad_state_t PROGMEM gamepad_0_idle_state = {
 	.up_axis = 0x00, .right_axis = 0x00, .down_axis = 0x00, .left_axis = 0x00,
 	.circle_axis = 0x00, .cross_axis = 0x00, .square_axis = 0x00, .triangle_axis = 0x00,
 	.l1_axis = 0x00, .r1_axis = 0x00, .l2_axis = 0x00, .r2_axis = 0x00,
-	.x_3_axis = 0x00, .y_3_axis = 0x00
+	.x_3_axis = 0x00, .y_3_axis = 0x00, .slider_axis = 0x80, .dial_axis = 0x80
 };
 
 static const gamepad_state_t PROGMEM gamepad_1_idle_state = {
@@ -363,7 +367,7 @@ static const gamepad_state_t PROGMEM gamepad_1_idle_state = {
 	.up_axis = 0x00, .right_axis = 0x00, .down_axis = 0x00, .left_axis = 0x00,
 	.circle_axis = 0x00, .cross_axis = 0x00, .square_axis = 0x00, .triangle_axis = 0x00,
 	.l1_axis = 0x00, .r1_axis = 0x00, .l2_axis = 0x00, .r2_axis = 0x00,
-	.x_3_axis = 0x00, .y_3_axis = 0x00
+	.x_3_axis = 0x00, .y_3_axis = 0x00, .slider_axis = 0x80, .dial_axis = 0x80
 };
 
 /*
@@ -580,6 +584,15 @@ int8_t sendControllerDataViaUSB(dataForMegaController_t btnList, uint8_t playerI
 	if (btnList.stick3Y > stickMax)
 		btnList.stick3Y = stickMax;
 
+	if (btnList.slider < stickMin)
+		btnList.slider = stickMin;
+	if (btnList.slider > stickMax)
+		btnList.slider = stickMax;
+		
+	if (btnList.dial < stickMin)
+		btnList.dial = stickMin;
+	if (btnList.dial > stickMax)
+		btnList.dial = stickMax;
 	
 	usbControllerState.l_x_axis = btnList.leftStickX;
 	usbControllerState.l_y_axis = btnList.leftStickY;
@@ -587,6 +600,8 @@ int8_t sendControllerDataViaUSB(dataForMegaController_t btnList, uint8_t playerI
 	usbControllerState.r_y_axis = btnList.rightStickY;
 	usbControllerState.x_3_axis = btnList.stick3X;
 	usbControllerState.y_3_axis = btnList.stick3Y;
+	usbControllerState.slider_axis = btnList.slider;
+	usbControllerState.dial_axis = btnList.dial;
 	
 	// Send the data out via USB
 	return usb_gamepad_send();

@@ -174,6 +174,8 @@ int main(void) {
 	_delay_ms(500);
 	dataForMegaController_t controllerData1;
 	dataForMegaController_t controllerData2;
+	
+	int fakeInput = 0;
 
 	while (1) {
 		// Delay so we're not going too fast
@@ -228,6 +230,8 @@ int main(void) {
 		serialIndex += 2;
 		controllerData1.stick3Y = get16bitValue(serialIndex);
 		serialIndex += 2;
+		controllerData1.slider = fakeInput;
+		controllerData1.dial = fakeInput / 2;
 		
 		controllerData2.leftStickX = get16bitValue(serialIndex);
 		serialIndex += 2;
@@ -240,6 +244,10 @@ int main(void) {
 		controllerData2.stick3X = get16bitValue(serialIndex);
 		serialIndex += 2;
 		controllerData2.stick3Y = get16bitValue(serialIndex);
+		controllerData2.slider = 1023 - fakeInput;
+		controllerData2.dial = 1023 - fakeInput/2;
+		
+		fakeInput = (fakeInput + 5) % 1024;
 		
 		// Communication with the Arduino chip is over here
 		LEDoff(TXLED);	
