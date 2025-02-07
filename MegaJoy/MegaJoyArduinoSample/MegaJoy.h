@@ -56,7 +56,7 @@
     //  Don't change this - the order of the fields is important for
     //  the communication between the Arduino and it's communications chip.
 #define BUTTON_ARRAY_SIZE 8
-#define ANALOG_AXIS_ARRAY_SIZE 12
+#define ANALOG_AXIS_ARRAY_SIZE 16
     
 	typedef struct megaJoyControllerData_t
 	{

@@ -230,8 +230,10 @@ int main(void) {
 		serialIndex += 2;
 		controllerData1.stick3Y = get16bitValue(serialIndex);
 		serialIndex += 2;
-		controllerData1.slider = fakeInput;
-		controllerData1.dial = fakeInput / 2;
+		controllerData1.slider = get16bitValue(serialIndex);
+		serialIndex += 2;
+		controllerData1.dial = get16bitValue(serialIndex);
+		serialIndex += 2;
 		
 		controllerData2.leftStickX = get16bitValue(serialIndex);
 		serialIndex += 2;
@@ -244,8 +246,10 @@ int main(void) {
 		controllerData2.stick3X = get16bitValue(serialIndex);
 		serialIndex += 2;
 		controllerData2.stick3Y = get16bitValue(serialIndex);
-		controllerData2.slider = 1023 - fakeInput;
-		controllerData2.dial = 1023 - fakeInput/2;
+		serialIndex += 2;
+		controllerData2.slider = get16bitValue(serialIndex);
+		serialIndex += 2;
+		controllerData2.dial = get16bitValue(serialIndex);
 		
 		fakeInput = (fakeInput + 5) % 1024;
 		

@@ -54,6 +54,10 @@ megaJoyControllerData_t getControllerData(void){
   controllerData.analogAxisArray[9] = analogRead(A9); 
   controllerData.analogAxisArray[10] = analogRead(A10); 
   controllerData.analogAxisArray[11] = analogRead(A11); 
+  controllerData.analogAxisArray[12] = analogRead(A12); 
+  controllerData.analogAxisArray[13] = analogRead(A13); 
+  controllerData.analogAxisArray[14] = analogRead(A14); 
+  controllerData.analogAxisArray[15] = analogRead(A15); 
   
   // And return the data!
   return controllerData;
