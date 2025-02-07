@@ -112,7 +112,7 @@ static const uint8_t PROGMEM endpoint_config_table[] = {
 
 
 static const uint8_t PROGMEM device_descriptor[] = {
-	38,					// bLength
+	18,					// bLength
 	1,					// bDescriptorType
 	0x10, 0x01,				// bcdUSB
 	0,					// bDeviceClass

@@ -243,9 +243,16 @@ int main(void) {
 		controllerData1.auxAxis15 = get16bitValue(serialIndex);
 		serialIndex += 2;
 		controllerData1.auxAxis16 = get16bitValue(serialIndex);
-		serialIndex += 2;
 		
-		one = (one + 5) % 1024;
+		//controllerData1.auxAxis10 = one * 2;
+		//controllerData1.auxAxis11 = one * 3;
+		//controllerData1.auxAxis12 = one * 4;
+		//controllerData1.auxAxis13 = one * 5;
+		//controllerData1.auxAxis14 = one * 6;
+		//controllerData1.auxAxis15 = one * 7;
+		//controllerData1.auxAxis16 = one * 8;
+		
+		one = one % 1024;
 		
 		// Communication with the Arduino chip is over here
 		LEDoff(TXLED);	
