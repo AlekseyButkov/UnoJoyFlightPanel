@@ -302,7 +302,9 @@ static const gamepad_state_t PROGMEM gamepad_0_idle_state = {
 	.up_axis = 0x00, .right_axis = 0x00, .down_axis = 0x00, .left_axis = 0x00,
 	.circle_axis = 0x00, .cross_axis = 0x00, .square_axis = 0x00, .triangle_axis = 0x00,
 	.l1_axis = 0x00, .r1_axis = 0x00, .l2_axis = 0x00, .r2_axis = 0x00,
-	.x_3_axis = 0x00, .y_3_axis = 0x00
+	.x_3_axis = 0x00, .y_3_axis = 0x00, .slider_axis = 0x80, .dial_axis = 0x80, .wheel_axis = 0x80,
+	.aux_axis10 = 0x80, .aux_axis11 = 0x80, .aux_axis12 = 0x80, .aux_axis13 = 0x80, .aux_axis14 = 0x80,
+	.aux_axis15 = 0x80, .aux_axis16 = 0x80
 };
 
 static const gamepad_state_t PROGMEM gamepad_1_idle_state = {
@@ -313,7 +315,9 @@ static const gamepad_state_t PROGMEM gamepad_1_idle_state = {
 	.up_axis = 0x00, .right_axis = 0x00, .down_axis = 0x00, .left_axis = 0x00,
 	.circle_axis = 0x00, .cross_axis = 0x00, .square_axis = 0x00, .triangle_axis = 0x00,
 	.l1_axis = 0x00, .r1_axis = 0x00, .l2_axis = 0x00, .r2_axis = 0x00,
-	.x_3_axis = 0x00, .y_3_axis = 0x00
+	.x_3_axis = 0x00, .y_3_axis = 0x00, .slider_axis = 0x80, .dial_axis = 0x80, .wheel_axis = 0x80,
+	.aux_axis10 = 0x80, .aux_axis11 = 0x80, .aux_axis12 = 0x80, .aux_axis13 = 0x80, .aux_axis14 = 0x80,
+	.aux_axis15 = 0x80, .aux_axis16 = 0x80
 };
 
 /*
